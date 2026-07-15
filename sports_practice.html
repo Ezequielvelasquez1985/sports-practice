@@ -262,7 +262,7 @@ var likeQs = [
   {idx:2, q:'Do you like to play basketball?',       ans:true},
   {idx:3, q:'Do you like to play baseball?',         ans:false},
   {idx:4, q:'Do you like to play volleyball?',       ans:true},
-  {idx:5, q:"Don't you like to play tennis?",        ans:false},
+  {idx:5, q:'Do you like to play tennis?',           ans:false},
   {idx:6, q:'Do you like to fly a kite?',            ans:true},
   {idx:7, q:'Do you like to read a book?',           ans:true},
   {idx:8, q:'Do you like to listen to music?',       ans:true},
@@ -501,6 +501,15 @@ function loadLike(){
     var eEl2=document.getElementById('lk-emoji');if(eEl2)eEl2.style.display='none';
   }
   document.getElementById('lk-img').alt=sw.word;
+  // Show big visual hint: thumbs up or thumbs down
+  var hintEl = document.getElementById('lk-hint');
+  if(!hintEl){
+    hintEl = document.createElement('div');
+    hintEl.id = 'lk-hint';
+    hintEl.style.cssText = 'font-size:60px;text-align:center;margin-bottom:8px';
+    document.getElementById('lk-img').parentNode.insertBefore(hintEl, document.getElementById('lk-img'));
+  }
+  hintEl.textContent = q.ans ? '👍' : '👎';
   document.getElementById('lk-q').textContent=q.q;
   var yb=document.getElementById('lk-yes');
   var nb=document.getElementById('lk-no');

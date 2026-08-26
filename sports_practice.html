@@ -156,8 +156,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;backgroun
     <div id="lk-q" class="like-q"></div>
   </div>
   <div class="like-btns">
-    <button class="like-btn" id="lk-yes">&#128149; Yes, I do!</button>
-    <button class="like-btn" id="lk-no">&#128148; No, I don't!</button>
+    <button class="like-btn" id="lk-yes" onclick="answerLike(true)">&#128149; Yes, I do!</button>
+    <button class="like-btn" id="lk-no" onclick="answerLike(false)">&#128148; No, I don't!</button>
   </div>
   <div class="feedback" id="lk-fb"></div>
   <div style="text-align:center"><button class="btn btn-primary" id="lk-next" onclick="nextLike()" style="display:none">Siguiente <i class="ti ti-arrow-right"></i></button></div>
@@ -236,7 +236,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;backgroun
 <div id="s-weather-vocab" class="screen">
   <div class="nav-row"><button class="btn" id="wv-back" onclick="show('s-home')"><i class="ti ti-arrow-left"></i> Inicio</button><span class="progress-txt" id="wv-prog">1/5</span></div>
   <div class="score-bar"><div class="score-item"><div class="val" id="wv-c">0</div><div class="lbl">correctas</div></div><div class="score-item"><div class="val" id="wv-w">0</div><div class="lbl">errores</div></div><div class="score-item"><div class="val" id="wv-s">0</div><div class="lbl">racha &#128293;</div></div></div>
-  <div class="question-area"><p>&#191;Cu&#225;l de estos describe el clima...?</p><div class="say-word" id="wv-word">&#8212;</div><button class="speak-btn" id="wv-speak"><i class="ti ti-volume"></i> Escuchar</button></div>
+  <div class="question-area"><p>&#191;Cu&#225;l de estos describe el clima...?</p><div class="say-word" id="wv-word">&#8212;</div><button class="speak-btn" id="wv-speak" onclick="speak(wvWord,'wv-speak')"><i class="ti ti-volume"></i> Escuchar</button></div>
   <div class="weather-grid" id="wv-opts"></div>
   <div class="feedback" id="wv-fb"></div>
   <div style="text-align:center"><button class="btn btn-primary" id="wv-next" onclick="nextWV()" style="display:none">Siguiente <i class="ti ti-arrow-right"></i></button></div>

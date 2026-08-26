@@ -111,7 +111,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;backgroun
 <div id="s-unlock">
   <h1>English Practice &#127891;</h1>
   <p>Sports, Activities &amp; More<br>Liam &#8212; Escuela Buen Pastor</p>
-  <button class="unlock-btn" id="unlock-btn">&#161;Tocar para comenzar!</button>
+  <button class="unlock-btn" id="start-btn">&#161;Tocar para comenzar!</button>
 </div>
 <div id="app">
 
@@ -356,20 +356,27 @@ var speechOK = false;
 var synth = window.speechSynthesis || null;
 var curSpeakWord = '';
 
-document.getElementById('unlock-btn').addEventListener('touchend',function(e){e.preventDefault();doUnlock();},false);
-document.getElementById('unlock-btn').addEventListener('click',doUnlock);
+var startBtn = document.getElementById('start-btn');
+startBtn.addEventListener('touchend', function(e){ e.preventDefault(); doUnlock(); }, false);
+startBtn.addEventListener('click', doUnlock);
 
-function doUnlock(){
-  document.getElementById('s-unlock').style.display='none';
-  if(!synth){finishUnlock();return;}
-  var u=new SpeechSynthesisUtterance('hello');
-  u.lang='en-US';u.volume=1;u.rate=0.8;
-  var t=setTimeout(function(){speechOK=false;finishUnlock();},3000);
-  u.onend=function(){speechOK=true;clearTimeout(t);finishUnlock();};
-  u.onerror=function(){speechOK=false;clearTimeout(t);finishUnlock();};
+function doUnlock() {
+  var btn = document.getElementById('start-btn');
+  btn.textContent = 'Cargando...';
+  btn.disabled = true;
+  if (!synth) { speechOK = false; finishUnlock(); return; }
+  var u = new SpeechSynthesisUtterance('hello');
+  u.lang = 'en-US'; u.rate = 0.8; u.volume = 1;
+  var t = setTimeout(function() { speechOK = false; finishUnlock(); }, 3000);
+  u.onend = function() { speechOK = true; clearTimeout(t); finishUnlock(); };
+  u.onerror = function() { speechOK = false; clearTimeout(t); finishUnlock(); };
   synth.speak(u);
 }
-function finishUnlock(){if(!speechOK)document.getElementById('audio-warn').style.display='block';}
+
+function finishUnlock() {
+  document.getElementById('s-unlock').style.display = 'none';
+  if (!speechOK) document.getElementById('audio-warn').style.display = 'block';
+}
 
 function speak(text, btnId){
   if(!speechOK||!synth)return;
